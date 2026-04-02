@@ -11,7 +11,7 @@ async function getSummary(req,res,next){
             WHERE deleted_at IS NULL`
         )
 
-        return res.status(200).json({summary: result.rows[0]});
+        return success(res, result.rows[0], "Summary fetched");
     }catch(err){
         next(err);
     }

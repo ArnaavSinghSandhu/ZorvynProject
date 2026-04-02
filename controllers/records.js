@@ -20,9 +20,12 @@ async function getRecords(req,res,next){
     try{
         const {category, type ,startDate, endDate, page = 1, limit = 20} = req.query;
 
-        let query = "SELECT * FROM Records WHERE deleted_at IS NULL";
-        const params = [];
         let i = 1;
+
+        let query = `SELECT * FROM Records WHERE deleted_at IS NULL`;
+        
+        const params = [];
+        
 
         if(category){
             query += ` AND category = $${i++}`;
@@ -32,11 +35,11 @@ async function getRecords(req,res,next){
             query += ` AND type = $${i++}`
             params.push(type)
         }
-        if (startDate) {
+        if (startDate && !isNaN(Date.parse(startDate))) {
             query += ` AND date >= $${i++}`
             params.push(startDate)
         }
-        if (endDate) {
+        if (endDate && !isNaN(Date.parse(endDate))) {
             query += ` AND date <= $${i++}`
             params.push(endDate)
         }

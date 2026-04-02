@@ -781,7 +781,11 @@
       <div class="nav-item active" onclick="showPage('dashboard')" data-page="dashboard">
         <span class="nav-icon">▦</span> Dashboard
       </div>
+<<<<<<< HEAD
       <div class="nav-item" onclick="showPage('records')" data-page="records">
+=======
+      <div class="nav-item" onclick="showPage('records')" data-page="records" id="nav-records">
+>>>>>>> ea0d1ad (Initial Commit)
         <span class="nav-icon">≡</span> Records
       </div>
       <div class="nav-item admin-only" onclick="showPage('users')" data-page="users" style="display:none">
@@ -1098,11 +1102,16 @@ function showApp() {
   document.getElementById('sidebar-role').textContent = currentUser.role;
 
   const isAdmin = currentUser.role === 'admin';
+  const isViewer = currentUser.role === 'viewer';
 
   // show admin-only elements
   document.querySelectorAll('.admin-only').forEach(el => {
     el.style.display = isAdmin ? '' : 'none';
   });
+
+  // hide records nav for viewers
+  const recordsNav = document.getElementById('nav-records');
+  if (recordsNav) recordsNav.style.display = isViewer ? 'none' : '';
 
   showPage('dashboard');
 }

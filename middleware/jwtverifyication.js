@@ -28,7 +28,7 @@ async function jwtAuthentication(req,res,next){
     const user = result.rows[0];
 
     if (!user)          return res.status(401).json({ error: 'User not found' });
-    if (!user.status) return res.status(403).json({ error: 'Account is deactivated' });
+    if (user.status !== 'active') return res.status(403).json({ error: 'Account is deactivated' });
     console.log("TOKEN USER ID:", req.user.id);
     console.log("DB USER:", user);
     req.user = user;
