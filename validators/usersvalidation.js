@@ -1,26 +1,26 @@
 const {body, param} = require('express-validator');
 
 const updateUserRoleValidation = [
-    param("id")
-    .isInt().withMessage('Invalid User Id'),
+    param('id')
+        .isInt({ min: 1 }).withMessage('User ID must be a positive integer'),
 
-    body("role")
-    .exists().withMessage('Invalid User Id')
-    .bail()
-    .isIn(['viewer','analyst','admin'])
-    .withMessage('Invalid User Type To Switch To')
+    body('role')
+        .exists({ checkFalsy: true }).withMessage('Role is required')
+        .bail()
+        .isIn(['viewer', 'analyst', 'admin'])
+        .withMessage('Role must be one of: viewer, analyst, admin')
 ];
 
 const userIdValidator = [
     param('id')
-        .isInt()
-        .withMessage('User ID must be a number')
+        .isInt({ min: 1 })
+        .withMessage('User ID must be a positive integer')
 ];
 
 
 const toggleUserRole = [
-    param("id")
-    .isInt().withMessage("Invaliid Id"),
+    param('id')
+        .isInt({ min: 1 }).withMessage('User ID must be a positive integer'),
 ];
 
 module.exports = {
