@@ -1,0 +1,22 @@
+.user-role-badge {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  display: inline-block;
+}
+
+.role-admin   { background: var(--ink);    color: var(--paper); }
+.role-analyst { background: var(--paper3); color: var(--ink); }
+.role-viewer  { background: var(--paper2); color: var(--muted); border: 1px solid var(--border); }
+
+.status-dot {
+  display: inline-block;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.status-active   { background: var(--green); }
+.status-inactive { background: var(--muted); }

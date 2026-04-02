@@ -1,0 +1,116 @@
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-bottom: 36px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.stat-card { background: var(--paper); padding: 28px 28px 24px; }
+
+.stat-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.stat-value {
+  font-family: var(--serif);
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.stat-value.positive { color: var(--green); }
+.stat-value.negative { color: var(--accent); }
+
+.dash-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.panel {
+  background: var(--paper2);
+  border: 1px solid var(--border);
+  padding: 24px;
+}
+
+.panel-title {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.activity-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.activity-row:last-child { border-bottom: none; }
+.activity-left { display: flex; align-items: center; gap: 12px; }
+
+.activity-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dot-income  { background: var(--green); }
+.dot-expense { background: var(--accent); }
+
+.activity-cat  { font-size: 0.85rem; font-weight: 500; }
+.activity-date { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); margin-top: 1px; }
+
+.activity-amount { font-family: var(--mono); font-size: 0.85rem; font-weight: 500; }
+
+.cat-row { margin-bottom: 14px; }
+
+.cat-header { display: flex; justify-content: space-between; margin-bottom: 5px; }
+.cat-name   { font-size: 0.85rem; }
+.cat-total  { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); }
+
+.bar-track {
+  height: 4px;
+  background: var(--paper3);
+  position: relative;
+  overflow: hidden;
+}
+
+.bar-fill    { height: 100%; transition: width 0.6s ease; }
+.bar-income  { background: var(--green); }
+.bar-expense { background: var(--accent); }
+
+.trend-table { width: 100%; border-collapse: collapse; }
+
+.trend-table th {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  text-align: left;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.trend-table td {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  padding: 9px 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.trend-table tr:last-child td { border-bottom: none; }
