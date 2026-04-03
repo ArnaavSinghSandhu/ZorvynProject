@@ -721,7 +721,6 @@
 </head>
 <body>
 
-<!-- ── AUTH ──────────────────────────────────────────────── -->
 <div id="auth-screen">
   <div class="auth-card">
     <div class="auth-logo">Ledger</div>
@@ -731,7 +730,6 @@
       <button class="auth-tab" onclick="switchTab('register')">Register</button>
     </div>
 
-    <!-- Login -->
     <div id="tab-login">
       <div class="field">
         <label>Email</label>
@@ -745,7 +743,6 @@
       <div class="msg-error" id="login-err"></div>
     </div>
 
-    <!-- Register -->
     <div id="tab-register" style="display:none">
       <div class="field">
         <label>Name</label>
@@ -773,7 +770,6 @@
   </div>
 </div>
 
-<!-- ── APP ───────────────────────────────────────────────── -->
 <div id="app-screen">
   <aside class="sidebar">
     <div class="sidebar-logo">Ledger <span>Finance OS</span></div>
@@ -781,11 +777,7 @@
       <div class="nav-item active" onclick="showPage('dashboard')" data-page="dashboard">
         <span class="nav-icon">▦</span> Dashboard
       </div>
-<<<<<<< HEAD
-      <div class="nav-item" onclick="showPage('records')" data-page="records">
-=======
       <div class="nav-item" onclick="showPage('records')" data-page="records" id="nav-records">
->>>>>>> ea0d1ad (Initial Commit)
         <span class="nav-icon">≡</span> Records
       </div>
       <div class="nav-item admin-only" onclick="showPage('users')" data-page="users" style="display:none">
@@ -803,7 +795,6 @@
 
   <main class="main">
 
-    <!-- Dashboard -->
     <div class="page active" id="page-dashboard">
       <div class="page-header">
         <div class="page-title">
@@ -843,7 +834,6 @@
       </div>
     </div>
 
-    <!-- Records -->
     <div class="page" id="page-records">
       <div class="page-header">
         <div class="page-title">
@@ -903,7 +893,6 @@
       </div>
     </div>
 
-    <!-- Users -->
     <div class="page" id="page-users">
       <div class="page-header">
         <div class="page-title">
@@ -933,7 +922,6 @@
   </main>
 </div>
 
-<!-- ── RECORD MODAL ───────────────────────────────────────── -->
 <div class="modal-overlay" id="record-modal">
   <div class="modal">
     <div class="modal-header">
@@ -976,7 +964,6 @@
   </div>
 </div>
 
-<!-- ── ROLE MODAL ─────────────────────────────────────────── -->
 <div class="modal-overlay" id="role-modal">
   <div class="modal">
     <div class="modal-header">
@@ -1000,23 +987,19 @@
 </div>
 
 <script>
-// ── CONFIG ───────────────────────────────────────────────────
 const API = 'http://localhost:3000/api';
 
-// ── STATE ────────────────────────────────────────────────────
 let token = localStorage.getItem('ledger_token') || null;
 let currentUser = JSON.parse(localStorage.getItem('ledger_user') || 'null');
 let recordsPage = 1;
 let recordsHasMore = true;
 
-// ── INIT ─────────────────────────────────────────────────────
 if (token && currentUser) {
   showApp();
 } else {
   document.getElementById('auth-screen').style.display = 'flex';
 }
 
-// ── HELPERS ──────────────────────────────────────────────────
 async function api(path, opts = {}) {
   const headers = { 'Content-Type': 'application/json' };
   if (token) headers['Authorization'] = `Bearer ${token}`;
@@ -1044,7 +1027,6 @@ function toast(msg, isError = false) {
   setTimeout(() => el.remove(), 3000);
 }
 
-// ── AUTH ─────────────────────────────────────────────────────
 function switchTab(tab) {
   document.querySelectorAll('.auth-tab').forEach((t, i) => {
     t.classList.toggle('active', (i === 0) === (tab === 'login'));
@@ -1093,7 +1075,6 @@ function doLogout() {
   document.getElementById('auth-screen').style.display = 'flex';
 }
 
-// ── APP SHELL ────────────────────────────────────────────────
 function showApp() {
   document.getElementById('auth-screen').style.display = 'none';
   document.getElementById('app-screen').style.display  = 'block';
@@ -1128,7 +1109,6 @@ function showPage(page) {
   if (page === 'users')     loadUsers();
 }
 
-// ── DASHBOARD ────────────────────────────────────────────────
 async function loadDashboard() {
   try {
     const [sumRes, catRes, trendRes, recentRes] = await Promise.all([
@@ -1218,7 +1198,6 @@ async function loadDashboard() {
   }
 }
 
-// ── RECORDS ──────────────────────────────────────────────────
 async function loadRecords(page = 1) {
   recordsPage = page;
   const type     = document.getElementById('filter-type').value;
@@ -1285,7 +1264,6 @@ function clearFilters() {
   loadRecords(1);
 }
 
-// ── RECORD MODAL ─────────────────────────────────────────────
 function openRecordModal(record = null) {
   document.getElementById('record-modal-title').textContent = record ? 'Edit Record' : 'New Record';
   document.getElementById('record-edit-id').value  = record?.id || '';
@@ -1340,7 +1318,6 @@ async function deleteRecord(id) {
   }
 }
 
-// ── USERS ────────────────────────────────────────────────────
 async function loadUsers() {
   const tbody = document.getElementById('users-tbody');
   tbody.innerHTML = `<tr><td colspan="6" class="loading">Loading</td></tr>`;
@@ -1416,7 +1393,6 @@ async function deleteUser(id) {
   }
 }
 
-// ── MODAL UTILS ──────────────────────────────────────────────
 function closeModal(id) {
   document.getElementById(id).classList.remove('open');
 }
@@ -1431,7 +1407,6 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(el => el.classList.remove('open'));
 });
 
-// allow pressing Enter on login
 document.addEventListener('keydown', e => {
   if (e.key !== 'Enter') return;
   if (document.getElementById('tab-login').style.display !== 'none' &&
